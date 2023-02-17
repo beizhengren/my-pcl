@@ -18,8 +18,8 @@ void write_pcl(const std::string& name, const PCL_TYPE& cloud)
     pcl::io::savePCDFileASCII (name, cloud);
 }
 
-template <typename PCL_POINTER>
-auto concatenate_points(const PCL_POINTER& points_a, const PCL_POINTER& points_b)
+template <typename... PCL_POINTER>
+auto concatenate_points(const PCL_POINTER... cloud_pack)
 {
-    return *points_a + *points_b;
+    return (... + *cloud_pack );
 }
